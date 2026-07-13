@@ -14,6 +14,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "7dbf68f0-88d3-4c29-b22e-1d7bb6bd22ab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -71,6 +80,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1e9f0411-3fec-4482-b1ef-a967e848ee79",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -79,7 +99,7 @@
             "id": "4d33f0b3-7ee6-402f-89e1-f9e35b955d60",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Mouse",
                     "type": "Value",
                     "id": "3632bbd2-c1f2-4bf1-b74f-662f8893bb49",
                     "expectedControlType": "Vector2",
@@ -96,7 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Mouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
