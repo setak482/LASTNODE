@@ -6,6 +6,7 @@ public class CursorManager : MonoBehaviour
     
     [Header("Cursor Color Settings")]
     [SerializeField] private float colorRecoverySpeed = 5f; // 색상이 원래대로 돌아오는 속도
+    [SerializeField] private float cursorPlaneHeight = 0f; // 커서를 찍을 평면의 Y 위치
     private SpriteRenderer _cursorSpriteRenderer;
     private Color _targetColor = Color.white; // 최종 목표 색상 (평소 색상)
 
@@ -50,21 +51,18 @@ public class CursorManager : MonoBehaviour
     {
         if (mainCamera == null) return;
 
-        // 1. Orthographic 월드 좌표 변환
-        Vector3 tempPos = mainCamera.ScreenToWorldPoint(new Vector3(
-            _screenMousePosition.x, 
-            _screenMousePosition.y, 
-            0f 
-        ));
+        Ray ray = mainCamera.ScreenPointToRay(_screenMousePosition);
+        Plane cursorPlane = new Plane(Vector3.up, Vector3.up * cursorPlaneHeight);
 
-        // 2. [핵심 수정] 커서의 Y축 높이를 카메라보다 약간만 낮은 위치(예: Y = 9.0f)로 잡습니다.
-        // 카메라가 Y=10에 있다면, 9.0f는 캡슐(높이 2)이나 벽보다 훨씬 높은 공중입니다.
-        // Orthographic 뷰 특성상 공중에 떠 있어도 바닥을 정확히 조준하는 것처럼 보입니다.
-        float renderHeight = mainCamera.transform.position.y - 1f;
+        if (cursorPlane.Raycast(ray, out float enterDistance))
+        {
+            _worldMousePosition = ray.GetPoint(enterDistance);
+        }
+        else
+        {
+            _worldMousePosition = mainCamera.transform.position + mainCamera.transform.forward * 10f;
+        }
 
-        _worldMousePosition = new Vector3(tempPos.x, renderHeight, tempPos.z);
-
-        // 3. 커서 오브젝트 위치 적용
         if (currentCursorTransform != null)
         {
             currentCursorTransform.position = _worldMousePosition;
