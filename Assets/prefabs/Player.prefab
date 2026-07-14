@@ -130,8 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 10
-  dashDistance: 15
-  dashDuration: 0.2
+  dashDistance: 8
+  dashDuration: 0.15
 --- !u!54 &263095072070287044
 Rigidbody:
   m_ObjectHideFlags: 0

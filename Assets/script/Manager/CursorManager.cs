@@ -65,7 +65,7 @@ public class CursorManager : MonoBehaviour
 
         if (currentCursorTransform != null)
         {
-            currentCursorTransform.position = _worldMousePosition;
+            currentCursorTransform.position = _worldMousePosition + Vector3.up * 0.2f;
         }
     }
 
